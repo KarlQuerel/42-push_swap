@@ -1,80 +1,55 @@
-_GREEN=\033[32m
+#----		Project		----#
+NAME		=	push_swap
 
-NAME	= push_swap
+#----		Compiler		----#
+CC			=	clang
+CC_FLAGS	=	-Wall -Wextra -Werror
 
-PATH_LIBFT	= libft
-LIBFT	= ${PATH_LIBFT}/libft.a
+#----		Commands		----#
+RM			=	rm -rf
 
-PATH_SRCS	= srcs
-SRCS	= ${PATH_SRCS}/main.c	\
-		${PATH_SRCS}/algorithm_utils.c	\
-		${PATH_SRCS}/algorithm.c	\
-		${PATH_SRCS}/lists.c	\
-		${PATH_SRCS}/lists_utils.c	\
-		${PATH_SRCS}/check_utils.c	\
-		${PATH_SRCS}/check.c	\
-		${PATH_SRCS}/operations.c	\
-		${PATH_SRCS}/operations_utils.c	\
-		${PATH_SRCS}/exit.c	\
+#----		Objects			----#
+OBJ_DIR		=	.objFiles
 
-OBJS	= ${SRCS:.c=.o}
+#----		Files			----#
+SRC_DIR		=	srcs
+INC_DIR		=	includes
 
-CC	= cc
+SRC_FILES	:=  $(shell find $(SRC_DIR) -name "*.c")
+OBJ_FILES	:=  $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC_FILES))
+INC_FILES	:=  $(wildcard $(INC_DIR)/*.h)
 
-C_FLAGS	= -Wall -Werror -Wextra
+#----		Colors			----#
+GREEN		 =	\e[92;5;118m
+YELLOW		=	\e[93;5;226m
+RESET		 =	\e[0m
 
-RM	= rm -f
+#----		Progress bar	----#
+TOTAL		 :=  $(words $(SRC_FILES))
+COUNT		 :=  0
 
-all: ${LIBFT} ${NAME}
+.PHONY: all clean fclean re
 
-${NAME}: ${OBJS}
-		${CC} ${C_FLAGS} -o ${NAME} ${OBJS} ${LIBFT}
-		clear
-		@toilet PUSH_SWAP COMPILED -F border -f future
-		@echo "$(_GREEN)		⢀⡴⠑⡄⠀⠀⠀⠀⠀⠀⠀⣀⣀⣤⣤⣤⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠸⡇⠀⠿⡀⠀⠀⠀⣀⡴⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀ca⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⠀⠀⠀⠑⢄⣠⠾⠁⣀⣄⡈⠙⣿⣿⣿⣿⣿⣿⣿⣿⣆⠀ compile "
-		@echo "$(_GREEN)		⠀⠀⠀⠀⢀⡀⠁⠀⠀⠈⠙⠛⠂⠈⣿⣿⣿⣿⣿⠿⡿⢿⣆⠀⠀⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⠀⠀⢀⡾⣁⣀⠀⠴⠂⠙⣗⡀⠀⢻⣿⣿⠭⢤⣴⣦⣤⣹⠀⠀⠀⢀⢴⣶⣆ "
-		@echo "$(_GREEN)		⠀⠀⢀⣾⣿⣿⣿⣷⣮⣽⣾⣿⣥⣴⣿⣿⡿⢂⠔⢚⡿⢿⣿⣦⣴⣾⠁⠸⣼⡿ "
-		@echo "$(_GREEN)		⠀⢀⡞⠁⠙⠻⠿⠟⠉⠀⠛⢹⣿⣿⣿⣿⣿⣌⢤⣼⣿⣾⣿⡟⠉⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⣾⣷⣶⠇⠀⠀⣤⣄⣀⡀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⠉⠈⠉⠀⠀⢦⡈⢻⣿⣿⣿⣶⣶⣶⣶⣤⣽⡹⣿⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⠀⠀⠀⠀⠀⠀⠉⠲⣽⡻⢿⣿⣿⣿⣿⣿⣿⣷⣜⣿⣿⣿⡇⠀⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣷⣶⣮⣭⣽⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⠀⠀⠀⠀⠀⣀⣀⣈⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇⠀⠀bravo⠀ "
-		@echo "$(_GREEN)		⠀⠀⠀⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀ "
-		@echo "$(_GREEN)		⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉"
+#----		Rules			----#
+all: $(NAME)
 
-${LIBFT}:
-		make -C ${PATH_LIBFT}
-		clear
-		@toilet LIBFT -F border -f future
+$(NAME): $(OBJ_FILES)
+	 @$(CC) $(NAME) $(OBJ_FILES)
+	 @printf "\n\n$(GREEN) - Executable ready: $(NAME)\n$(RESET)"
 
-
-.c.o:
-	${CC} ${C_FLAGS} -c $< -o ${<:.c=.o}
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(INC_FILES)
+	 @mkdir -p $(dir $@)
+	 @$(CC) $(CC_FLAGS) -I $(INC_DIR) -c $< -o $@
+	 @$(eval COUNT=$(shell expr $(COUNT) + 1))
+	 @$(eval PERCENT=$(shell expr $(COUNT) \* 100 / $(TOTAL)))
+	 @printf "$(GREEN) - Compiling: [%-0s] %d%%$(RESET)\r" "$$(printf '▉%.0s' $$(seq 1 $$(expr $(PERCENT) \* 50 / 100)))" $(PERCENT)
 
 clean:
-		make -C ${PATH_LIBFT} clean
-		${RM} ${OBJS}
-		clear
-		@toilet CLEAN -F border -f future
+	 @$(RM) $(OBJ_DIR)
+	 @printf "$(YELLOW) - Object files removed.\n$(RESET)"
 
-fclean:	clean
-		make -C ${PATH_LIBFT} fclean
-		${RM} ${NAME}
-		clear
-		@toilet FCLEAN -F border -f future
+fclean: clean
+	 @$(RM) $(NAME)
+	 @printf "$(YELLOW) - Executable removed: $(NAME)\n\n$(RESET)"
 
-norminette:
-		@toilet NORMINETTE -F border -f future
-		@echo NORMINETTE SRCS
-		@norminette srcs
-		@echo NORMINETTE INCLUDES
-		@norminette includes
-
-re:	fclean all
-
-.PHONY:	all clean fclean re
+re: fclean all
