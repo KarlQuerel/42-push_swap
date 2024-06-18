@@ -1,7 +1,7 @@
 <a id="top"></a>
 
 # push_swap
-`push_swap` is a sorting algorithm project where the goal is to sort a stack of integers using a set of predefined operations with the smallest number of operations possible.
+`push_swap` is a sorting algorithm project where the goal is to sort a stack of integers using a set of predefined operations, aiming to achieve this with the smallest number of operations possible..
 
 ## Table of Contents
 - [Introduction](#introduction)
