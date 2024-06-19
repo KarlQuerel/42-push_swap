@@ -28,9 +28,20 @@ The project entails implementing the following operations:
 - **rrr**: Execute **rra** and **rrb** simultaneously.
 
 ## Installation
-1. Clone this repository to your local machine.
-2. Navigate to the project directory.
-3. Compile the program using `make`.
+1. Clone this repository to your local machine:
+	```sh
+	git clone https://github.com/KarlQuerel/42-push_swap.git
+	```
+
+2. Navigate to the project directory:
+	```sh
+	cd push_swap
+	```
+
+3. Compile the project using `make`:
+	```sh
+	make
+	```
 
 ## Usage
 To run the program, execute the following command:
