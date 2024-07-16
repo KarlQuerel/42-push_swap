@@ -35,7 +35,7 @@ The project entails implementing the following operations:
 
 2. Navigate to the project directory:
 	```sh
-	cd push_swap
+	cd 42-push_swap
 	```
 
 3. Compile the project using `make`:
